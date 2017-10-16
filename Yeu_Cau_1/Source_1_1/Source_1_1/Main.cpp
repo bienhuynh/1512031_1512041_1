@@ -8,6 +8,7 @@ struct Node
 {
 	int data;
 	Node **pNext;
+
 };
 
 struct DoubleNode
