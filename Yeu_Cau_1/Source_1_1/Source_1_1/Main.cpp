@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string> 
 using namespace std;
@@ -34,9 +34,44 @@ void ReadInput(
 	, fstream &f //read file
 );
 
+//read data into node in RAM and import to list node
+void ImportNodeinGraph(
+	string dataGraphRaw //data graph raw readed from file txt
+						//dữ liệu đồ thị thô đocj từ file txt
+	, Node *list //List node graph
+);
 
 //search algothrium
-
+//a>
+//Depth First Search (Tìm kiếm theo chiều sâu)
+void DepthFirstSearch(
+	Node *list //list node graph 
+	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
+);
+//b>
+//Breadth First Search (Tìm kiếm the chiều rộng)
+void BreadthFirstSearch(
+	Node *list //list node graph 
+	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
+);
+//c>
+//Uniform Cost Search (Tìm kiếm chi phí đồng nhất)
+void UniformCostSearch(
+	Node *list //list node graph 
+	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
+);
+//d>
+//Greedy Best First Search (Tìm kiếm tham lam)
+void GreedyBestFirstSearch(
+	Node *list //list node graph 
+	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
+);
+//e>
+//Search A* (Tìm kiếm A*)
+void SearchHeurictis(
+	Node *list //list node graph 
+	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
+);
 
 void main()
 {
@@ -78,12 +113,58 @@ void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
 	}
 	point.G.data = atoi(Str_G.c_str());
 
-	//read graph node
+	//read graph node from input.txt into RAM
+	//đọc đồ thị từ file input.txt lưu vào một biến string
 	while (!f.eof())
 	{
 		getline(f, str);
-		datagraph += str + '\n';
+		datagraph += str + '\n';//save a variable string and each a line in input.txt descrem '\n'
+								//mỗi một dòng trong file input.txt phân biệt nhau một kí tự xuống hàng '\n'
 	}
-
+	//Đọc dữ liệu đồ thị thô và Lấy dữ liệu của nút đẩy vào một nút và các hướng liên kết của nút
+	//=>nói tóm lại kết xuất đồ thị vào danh sách node
+	//read data into node in RAM and import to list node
+	ImportNodeinGraph(datagraph, list);
 	f.close();
+}
+
+//read data into node in RAM and import to list node
+void ImportNodeinGraph(
+	string dataGraphRaw
+	, Node *list
+)
+{
+
+}
+
+//search algothrium
+//a>
+//Depth First Search (Tìm kiếm theo chiều sâu)
+void DepthFirstSearch(Node *list, Node *listout)
+{
+
+}
+//b>
+//Breadth First Search (Tìm kiếm the chiều rộng)
+void BreadthFirstSearch(Node *list, Node *listout)
+{
+
+}
+//c>
+//Uniform Cost Search (Tìm kiếm chi phí đồng nhất)
+void UniformCostSearch(Node *list, Node *listout)
+{
+
+}
+//d>
+//Greedy Best First Search (Tìm kiếm tham lam)
+void GreedyBestFirstSearch(Node *list, Node *listout)
+{
+
+}
+//e>
+//Search A* (Tìm kiếm A*)
+void SearchHeurictis(Node *list, Node *listout)
+{
+
 }
