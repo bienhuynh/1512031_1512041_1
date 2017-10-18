@@ -6,11 +6,12 @@ using namespace std;
 //create and manage node
 struct Node
 {
-	int data;
+	int data;//contain data of node in graph
+	int color; //check node gone by paint color node (node nao di qua se bi to mau de danh dau)
 	Node **pNext;
-
 };
 
+//save double node start and node end
 struct DoubleNode
 {
 	//node start S
@@ -21,11 +22,37 @@ struct DoubleNode
 
 //List node graph
 Node *nodeList = new Node();
+
+//new point Start S and Point end G
 DoubleNode point;
+
 //read file input input.txt
+void ReadInput(
+	Node *list //list node of graph (danh sach luu cac node cua do thi)
+	, int &size //summary node of graph
+	, DoubleNode &point //node S and Node G
+	, fstream &f //read file
+);
+
+
+//search algothrium
+
+
+void main()
+{
+	//read input file
+	fstream f;
+	int n = 0;
+
+	ReadInput(nodeList, n, point, f);
+	
+
+	system("pause");
+}
+
 void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
 {
-	f.open("input.txt", ios::in);	
+	f.open("input.txt", ios::in);
 	//save temp size and point start and point end
 	string str;
 	//save data graph node
@@ -57,21 +84,6 @@ void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
 		getline(f, str);
 		datagraph += str + '\n';
 	}
-	
+
 	f.close();
-}
-
-//search algothrium
-
-
-void main()
-{
-	//read input file
-	fstream f;
-	int n = 0;
-
-	ReadInput(nodeList, n, point, f);
-	
-
-	system("pause");
 }
