@@ -7,6 +7,7 @@ using namespace std;
 struct Node
 {
 	int data;//contain data of node in graph
+	int weight; //weight of x->y (trọng số của x->y)
 	int color; //check node gone by paint color node (node nao di qua se bi to mau de danh dau)
 	Node **pNext;
 };
@@ -39,7 +40,9 @@ void ImportNodeinGraph(
 	string dataGraphRaw //data graph raw readed from file txt
 						//dữ liệu đồ thị thô đocj từ file txt
 	, Node *list //List node graph
+	, int size //N size of graph (số node của đồ thị)
 );
+
 
 //search algothrium
 //a>
@@ -124,7 +127,7 @@ void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
 	//Đọc dữ liệu đồ thị thô và Lấy dữ liệu của nút đẩy vào một nút và các hướng liên kết của nút
 	//=>nói tóm lại kết xuất đồ thị vào danh sách node
 	//read data into node in RAM and import to list node
-	ImportNodeinGraph(datagraph, list);
+	ImportNodeinGraph(datagraph, list, size);
 	f.close();
 }
 
@@ -132,9 +135,29 @@ void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
 void ImportNodeinGraph(
 	string dataGraphRaw
 	, Node *list
+	, int size 
 )
 {
+	//ý tưởng
+	//Cứ một đồ thị dạng thô sẽ có ma trận NxN để biểu diễn
+	//khi ta biết được N là bao nhiêu thì ta có thể duyệt được bản thân một node 
+	//đang xét với các node còn lại có mối quan hệ ntn
+	Node *node;
+	list = node;
+	for (int i = 0; i < size; i++)
+	{
+		node = new Node();
+		node->data = i;
+		for (int j = 0; j < size; j++)
+		{
+			if (dataGraphRaw[i] != dataGraphRaw[i*size + j + 1])
+			{
+				string a = dataGraphRaw[i*size + j + 1];
+				node->weight = atoi();
+			}
 
+		}
+	}
 }
 
 //search algothrium
