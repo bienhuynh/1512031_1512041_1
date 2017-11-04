@@ -1,0 +1,35 @@
+﻿  Main.cpp
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(139): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(140): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(141): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(142): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(143): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(144): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(145): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(146): error C3861: 'gotoxy': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(147): error C2065: 'cin': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(152): error C3861: 'Reset': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(153): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(154): error C2065: 's': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(154): error C2065: 'g': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(154): error C3861: 'DepthFirstSearch': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(159): error C3861: 'Reset': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(160): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(161): error C2065: 's': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(161): error C2065: 'g': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(161): error C3861: 'BreadthFirstSearch': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(166): error C3861: 'Reset': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(167): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(168): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(173): error C3861: 'Reset': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(174): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(175): error C2065: 's': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(175): error C2065: 'g': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(175): error C3861: 'GreedyBestFirstSearch': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(180): error C3861: 'Reset': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(181): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(182): error C2065: 's': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(182): error C2065: 'g': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(182): error C3861: 'AStarSearch': identifier not found
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(190): error C2065: 'cout': undeclared identifier
+e:\projects\doan\1512031_1512041_1\yeu_cau_2\source_1_2\source_1_2\main.cpp(196): error C2065: 'cout': undeclared identifier

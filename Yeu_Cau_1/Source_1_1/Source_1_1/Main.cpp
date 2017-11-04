@@ -1,193 +1,364 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string> 
+#include<Windows.h>
+
 using namespace std;
-
-//create and manage node
-struct Node
-{
-	int data;//contain data of node in graph
-	int weight; //weight of x->y (trọng số của x->y)
-	int color; //check node gone by paint color node (node nao di qua se bi to mau de danh dau)
-	Node **pNext;
-};
-
-//save double node start and node end
-struct DoubleNode
-{
-	//node start S
-	Node S;
-	//node end G
-	Node G;
-};
-
-//List node graph
-Node *nodeList = new Node();
-
-//new point Start S and Point end G
-DoubleNode point;
-
-//read file input input.txt
-void ReadInput(
-	Node *list //list node of graph (danh sach luu cac node cua do thi)
-	, int &size //summary node of graph
-	, DoubleNode &point //node S and Node G
-	, fstream &f //read file
-);
-
-//read data into node in RAM and import to list node
-void ImportNodeinGraph(
-	string dataGraphRaw //data graph raw readed from file txt
-						//dữ liệu đồ thị thô đocj từ file txt
-	, Node *list //List node graph
-	, int size //N size of graph (số node của đồ thị)
-);
-
-
-//search algothrium
-//a>
-//Depth First Search (Tìm kiếm theo chiều sâu)
-void DepthFirstSearch(
-	Node *list //list node graph 
-	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
-);
-//b>
-//Breadth First Search (Tìm kiếm the chiều rộng)
-void BreadthFirstSearch(
-	Node *list //list node graph 
-	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
-);
-//c>
-//Uniform Cost Search (Tìm kiếm chi phí đồng nhất)
-void UniformCostSearch(
-	Node *list //list node graph 
-	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
-);
-//d>
-//Greedy Best First Search (Tìm kiếm tham lam)
-void GreedyBestFirstSearch(
-	Node *list //list node graph 
-	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
-);
-//e>
-//Search A* (Tìm kiếm A*)
-void SearchHeurictis(
-	Node *list //list node graph 
-	, Node *listout //list Node road from S->G (đường đi vừa tìm được từ S->G)
-);
+int n; //so luong dinh
+int s, g; //dinh dau, dinh cuoi
+int **maTran; //ma tran trong so cua cac canh
+int *heuristic;
+/*
+currentStage va soDinhDaDiQua se thay the cho viec su dung Stack
+*/
+int *currentStage; //luu duong di hien tai
+int soDinhDaDiQua; //so luong dinh da di qua
+bool *daDuyet; //neu da duyet qua dinh i thi daDuyet[i]=true;
+int *daDuyet2; //luu danh sach cac dinh da di qua trong qua trinh tim kiem
+bool stop; //neu stop == true thi dung thuat toan tim kiem
+void ReadInput(); //doc du lieu tu file input.txt
+void Reset(); //Khoi tao lai cac bien can thiet de bat dau thuat toan
+void InKetQua(string namefile);
+void ThemVaoDanhSachDaDuyet(int vt);
+int ViTriPhanTuNhoNhat(int *a);
+int ViTriPhanTuNhoNhatAStar(int *a);
+void DepthFirstSearch(int start, int end);
+void BreadthFirstSearch(int start, int end);
+void GreedyBestFirstSearch(int start, int end);
+void AStarSearch(int start, int end);
+//Di chuyen con tro vi tri trong console den noi khac
+void gotoxy(int column, int line);
+//Xoa het cac ki tu tu con tro console den het
+void DeleteSpaceConsole(int length);
+//ghi output ra file txt de luu tru
+void OutputFile(int data, ofstream &f);
 
 void main()
 {
-	//read input file
-	fstream f;
-	int n = 0;
-
-	ReadInput(nodeList, n, point, f);
+	system("COLOR A ");
+	//ReadInput();
+	//Reset();
+	//DepthFirstSearch(s, g);
+	ReadInput();
+	bool exit = true;
+	int chose = 0;
 	
-
+	while (exit)
+	{	
+		cout << ">> [1] << Tim Kiem Theo Chieu Sau (depth-first search) " << endl;
+		cout << ">> [2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
+		cout << ">> [3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
+		cout << ">> [4] << Tim kiem tham lam(greedy best - first search) " << endl;
+		cout << ">> [5] << Tim kiem A* " << endl;
+		cout << ">> [0] << Exit" << endl;
+		cout << "Chon Thuat toan [     ]";
+		gotoxy(19, 6);//Di chuyen con tro cin den vi tri moi trong console
+		cin >> chose;
+		if (chose == 0) exit = !exit;
+		switch (chose)
+		{
+		case 1: 
+			Reset();
+			cout << ">> [1] << Tim Kiem Theo Chieu Sau (depth-first search) " << endl;
+			DepthFirstSearch(s, g);
+			system("pause");
+			system("cls");
+			break;
+		case 2:
+			Reset();
+			cout << ">> [2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
+			BreadthFirstSearch(s, g);
+			system("pause");
+			system("cls");
+			break;
+		case 3:
+			Reset();
+			cout << ">> [3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
+			cout << "Tinh nang chua co san" << endl;
+			system("pause");
+			system("cls");
+			break;
+		case 4:
+			Reset();
+			cout << ">> [4] << Tim kiem tham lam(greedy best - first search) " << endl;
+			GreedyBestFirstSearch(s, g);
+			system("pause");
+			system("cls");
+			break;
+		case 5:
+			Reset();
+			cout << ">> [5] << Tim kiem A* " << endl;
+			AStarSearch(s, g);
+			system("pause");
+			system("cls");
+			break;
+		case 0:
+			system("cls");
+			break;
+		default:
+			cout << "Ban phai con mot muc hoac bam 0 de exit" << endl;
+			system("pause");
+			system("cls");
+			break;
+		}
+	}
+	cout << ">> [0] << Exit. " << endl;
 	system("pause");
 }
-
-void ReadInput(Node *list, int &size, DoubleNode &point, fstream &f)
+void ReadInput()
 {
-	f.open("input.txt", ios::in);
-	//save temp size and point start and point end
-	string str;
-	//save data graph node
-	string datagraph = "";
-	string Str_S = "", Str_G = "";
-	char i = 0;
-
-	getline(f, str);
-	size = atoi(str.c_str());
-	getline(f, str);
-
-	//read and get node start
-	for (; str[i] != ' '; i++)
+	ifstream f("input.txt");
+	f >> n >> s >> g;
+	maTran = new int*[n];
+	for (size_t i = 0; i < n; i++)
 	{
-		Str_S += str[i];
+		maTran[i] = new int[n];
 	}
-	point.S.data = atoi(Str_S.c_str());
-
-	//read and get node end
-	for (; i < str.length(); i++)
+	for (size_t i = 0; i < n; i++)
 	{
-		Str_G += str[i];
+		for (size_t j = 0; j < n; j++)
+		{
+			f >> maTran[i][j];
+		}
 	}
-	point.G.data = atoi(Str_G.c_str());
-
-	//read graph node from input.txt into RAM
-	//đọc đồ thị từ file input.txt lưu vào một biến string
-	while (!f.eof())
+	heuristic = new int[n];
+	for (size_t i = 0; i < n; i++)
 	{
-		getline(f, str);
-		datagraph += str + '\n';//save a variable string and each a line in input.txt descrem '\n'
-								//mỗi một dòng trong file input.txt phân biệt nhau một kí tự xuống hàng '\n'
+		f >> heuristic[i];
 	}
-	//Đọc dữ liệu đồ thị thô và Lấy dữ liệu của nút đẩy vào một nút và các hướng liên kết của nút
-	//=>nói tóm lại kết xuất đồ thị vào danh sách node
-	//read data into node in RAM and import to list node
-	ImportNodeinGraph(datagraph, list, size);
+}
+void Reset()
+{
+	soDinhDaDiQua = 0;
+	stop = false;
+	if (daDuyet != nullptr) delete[]daDuyet;
+	daDuyet = new bool[n]; 
+	for (size_t i = 0; i < n; i++)
+	{
+		daDuyet[i] = false;
+	}
+	if (daDuyet2 != nullptr) delete[]daDuyet2;
+	daDuyet2 = new int[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		daDuyet2[i] = -1;
+	}
+	if (currentStage != nullptr) delete[]currentStage;
+	currentStage = new int[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		currentStage[i] = 0;
+	}
+}
+void InKetQua(string namefile)
+{
+	ofstream f;
+	f.open(namefile, ios_base::out);
+	//in cac dinh da di qua trong qua trinh tim kiem;
+	for (size_t i = 0; i < n; i++)
+	{
+		if (daDuyet2[i] != -1)
+		{
+			cout << daDuyet2[i] << " ";
+			OutputFile(daDuyet[i], f);
+		}	
+		else break;
+	}
+	f << endl;
+	cout << endl;
+	//in duong di tu S den G
+	for (size_t i = 0; i < soDinhDaDiQua; i++)
+	{
+		cout << currentStage[i] << " ";
+		OutputFile(currentStage[i], f);
+	}
 	f.close();
 }
-
-//read data into node in RAM and import to list node
-void ImportNodeinGraph(
-	string dataGraphRaw
-	, Node *list
-	, int size 
-)
+void ThemVaoDanhSachDaDuyet(int vt)
 {
-	//ý tưởng
-	//Cứ một đồ thị dạng thô sẽ có ma trận NxN để biểu diễn
-	//khi ta biết được N là bao nhiêu thì ta có thể duyệt được bản thân một node 
-	//đang xét với các node còn lại có mối quan hệ ntn
-	Node *node;
-	list = node;
-	for (int i = 0; i < size; i++)
+	for (size_t i = 0; i < n; i++)
 	{
-		node = new Node();
-		node->data = i;
-		for (int j = 0; j < size; j++)
+		if (daDuyet2[i] == vt)return;
+		if (daDuyet2[i] == -1)
 		{
-			if (dataGraphRaw[i] != dataGraphRaw[i*size + j + 1])
-			{
-				string a = dataGraphRaw[i*size + j + 1];
-				node->weight = atoi();
-			}
-
+			daDuyet2[i] = vt;
+			return;
 		}
 	}
 }
-
-//search algothrium
-//a>
-//Depth First Search (Tìm kiếm theo chiều sâu)
-void DepthFirstSearch(Node *list, Node *listout)
+int ViTriPhanTuNhoNhat(int *a)
 {
-
+	int k = 0;
+	int min = -1;
+	for (size_t i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			if (min == -1 || a[i] < min)
+			{
+				min = a[i];
+				k = i;
+			}
+		}
+	}
+	return k;
 }
-//b>
-//Breadth First Search (Tìm kiếm the chiều rộng)
-void BreadthFirstSearch(Node *list, Node *listout)
+int ViTriPhanTuNhoNhatAStar(int *a)
 {
-
+	int k = 0;
+	int min = -1;
+	for (size_t i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			if (min == -1 || (a[i] + heuristic[i]) < min)
+			{
+				min = a[i] + heuristic[i];
+				k = i;
+			}
+		}
+	}
+	return k;
 }
-//c>
-//Uniform Cost Search (Tìm kiếm chi phí đồng nhất)
-void UniformCostSearch(Node *list, Node *listout)
+void DepthFirstSearch(int start, int end)
 {
-
+	ThemVaoDanhSachDaDuyet(start);
+	currentStage[soDinhDaDiQua] = start;
+	soDinhDaDiQua++;
+	daDuyet[start] = true;
+	if (start == end)
+	{
+		InKetQua("dsf.txt");
+		stop = true;
+		return;
+	}
+	for (size_t i = 0; i < n; i++)
+	{
+		if (maTran[start][i] > 0 && daDuyet[i] == false)
+		{
+			DepthFirstSearch(i, end);
+		}
+		if (stop) return;
+	}
+	daDuyet[start] = false;
+	soDinhDaDiQua--;
 }
-//d>
-//Greedy Best First Search (Tìm kiếm tham lam)
-void GreedyBestFirstSearch(Node *list, Node *listout)
+void BreadthFirstSearch(int start, int end)
 {
-
+	ThemVaoDanhSachDaDuyet(start);
+	currentStage[soDinhDaDiQua] = start;
+	soDinhDaDiQua++;
+	daDuyet[start] = true;
+	if (start == end)
+	{
+		InKetQua("bfs.txt");
+		stop = true;
+		return;
+	}
+	for (size_t i = 0; i < n; i++)
+	{
+		if (maTran[start][i] > 0 && daDuyet[i] == false)
+		{
+			if (i == end)
+				BreadthFirstSearch(i, end);
+			ThemVaoDanhSachDaDuyet(i);
+		}
+		if (stop) return;
+	}
+	for (size_t i = 0; i < n; i++)
+	{
+		if (maTran[start][i] > 0 && daDuyet[i] == false)
+		{
+			BreadthFirstSearch(i, end);
+		}
+		if (stop) return;
+	}
+	daDuyet[start] = false;
+	soDinhDaDiQua--;
 }
-//e>
-//Search A* (Tìm kiếm A*)
-void SearchHeurictis(Node *list, Node *listout)
+void GreedyBestFirstSearch(int start, int end)
 {
+	ThemVaoDanhSachDaDuyet(start);
+	currentStage[soDinhDaDiQua] = start;
+	soDinhDaDiQua++;
+	daDuyet[start] = true;
+	if (start == end)
+	{
+		InKetQua("gbfs.txt");
+		stop = true;
+		return;
+	}
+	int *SapXep = new int[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		SapXep[i] = maTran[start][i];
+	}
+	for (size_t i = 0; i < n; i++)
+	{
+		int k = ViTriPhanTuNhoNhat(SapXep);
+		if (maTran[start][k] == 0) break;
+		SapXep[k] = 0;
+		if (daDuyet[k] == false)
+		{
+			GreedyBestFirstSearch(k, end);
+		}
+		if (stop) return;
+	}
+	daDuyet[start] = false;
+	soDinhDaDiQua--;
+}
+void AStarSearch(int start, int end)
+{
+	ThemVaoDanhSachDaDuyet(start);
+	currentStage[soDinhDaDiQua] = start;
+	soDinhDaDiQua++;
+	daDuyet[start] = true;
+	if (start == end)
+	{
+		InKetQua("astar.txt");
+		stop = true;
+		return;
+	}
+	int *SapXep = new int[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		SapXep[i] = maTran[start][i];
+	}
+	for (size_t i = 0; i < n; i++)
+	{
+		int k = ViTriPhanTuNhoNhatAStar(SapXep);
+		if (maTran[start][k] == 0) break;
+		SapXep[k] = 0;
+		if (daDuyet[k] == false)
+		{
+			AStarSearch(k, end);
+		}
+		if (stop) return;
+	}
+	daDuyet[start] = false;
+	soDinhDaDiQua--;
+}
 
+void gotoxy(int column, int line)
+{
+	COORD coord;
+	coord.X = column;
+	coord.Y = line;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		coord
+	);
+}
+
+void DeleteSpaceConsole(int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << " ";
+	}
+}
+
+void OutputFile(int data, ofstream &f)
+{
+	f << data << " ";
 }

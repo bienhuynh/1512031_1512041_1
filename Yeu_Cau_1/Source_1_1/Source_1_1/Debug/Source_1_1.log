@@ -1,3 +1,21 @@
 ﻿  Main.cpp
-e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(47): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(113): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(117): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(119): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(125): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(136): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(142): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(148): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(158): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(170): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(179): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(193): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(210): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(235): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(258): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(268): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(292): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(296): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(323): warning C4018: '<': signed/unsigned mismatch
+e:\projects\doan\1512031_1512041_1\yeu_cau_1\source_1_1\source_1_1\main.cpp(327): warning C4018: '<': signed/unsigned mismatch
   Source_1_1.vcxproj -> E:\Projects\Doan\1512031_1512041_1\Yeu_Cau_1\Source_1_1\Debug\Source_1_1.exe
