@@ -5,6 +5,8 @@
 #include<windows.h>
 #include <math.h> 
 #include"BitArray.h"
+#include<iostream>
+
 #define Round(a) (int)(a+0.5) 
 using namespace std;
 BitArray *VatCan;
@@ -129,57 +131,80 @@ void TimDuongDi(int *x1, int *y1, int *x2, int *y2)
 end:;
 }
 
+void gotoxy(int column, int line)
+{
+	COORD coord;
+	coord.X = column;
+	coord.Y = line;
+	SetConsoleCursorPosition(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		coord
+	);
+}
+
 void main()
 {
 	bool exit = true;
 	int chose = 0;
+	//Diem bat dau
+	int x1 = 50, y1 = 50;
+	//Diem ket thuc 
+	int x2 = 300, y2 = 300;
+	//khoi tao
+	VatCan = new BitArray[MAX];
+	DuongDi = new BitArray[MAX];
+	CacDiemDaDiQua = new BitArray[MAX];
+	//tam giac
+	VeDoanThang(100, 100, 200, 200);
+	VeDoanThang(200, 200, 100, 200);
+	VeDoanThang(100, 100, 100, 200);
 
+	TimDuongDi(&x1, &y1, &x2, &y2);
 	while (exit)
 	{
-		cout << ">> [1] << Tim Kiem Theo Chieu Sau (depth-first search) " << endl;
-		cout << ">> [2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
-		cout << ">> [3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
-		cout << ">> [4] << Tim kiem tham lam(greedy best - first search) " << endl;
-		cout << ">> [5] << Tim kiem A* " << endl;
+		system("COLOR A");
+		cout << ">> [Level 1] << Co di duoc tu dinh S(" << x1 << "," << y1 << ") den G(" << x2 << "," << y2 << ") khong? " << endl;
+		cout << ">> [Level 2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
+		cout << ">> [Level 3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
+		cout << ">> [Level 4] << Tim kiem tham lam(greedy best - first search) " << endl;
+		cout << ">> [Level 5] << Tim kiem A* " << endl;
 		cout << ">> [0] << Exit" << endl;
-		cout << "Chon Thuat toan [     ]";
-		gotoxy(19, 6);//Di chuyen con tro cin den vi tri moi trong console
+		cout << "Chon Level [     ]";
+		gotoxy(14, 6);//Di chuyen con tro cin den vi tri moi trong console
 		cin >> chose;
 		if (chose == 0) exit = !exit;
 		switch (chose)
 		{
 		case 1:
-			Reset();
-			cout << ">> [1] << Tim Kiem Theo Chieu Sau (depth-first search) " << endl;
-			DepthFirstSearch(s, g);
+			cout << ">> [Level 1] << Tim Kiem Theo Chieu Sau (depth-first search) " << endl;
+			
 			system("pause");
 			system("cls");
 			break;
 		case 2:
-			Reset();
-			cout << ">> [2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
-			BreadthFirstSearch(s, g);
+			cout << ">> [Level 2] << Tim kiem theo chieu rong (breadth - first search) " << endl;
+			
 			system("pause");
 			system("cls");
 			break;
 		case 3:
-			Reset();
-			cout << ">> [3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
+			
+			cout << ">> [Level 3] << Tim kiem chi phi dong nhat (uniform - cost search) " << endl;
 			cout << "Tinh nang chua co san" << endl;
 			system("pause");
 			system("cls");
 			break;
 		case 4:
-			Reset();
-			cout << ">> [4] << Tim kiem tham lam(greedy best - first search) " << endl;
-			GreedyBestFirstSearch(s, g);
+			
+			cout << ">> [Level 4] << Tim kiem tham lam(greedy best - first search) " << endl;
+			
 			system("pause");
 			system("cls");
 			break;
 		case 5:
-			Reset();
-			cout << ">> [5] << Tim kiem A* " << endl;
-			AStarSearch(s, g);
+			
+			cout << ">> [Level 5] << Tim kiem A* " << endl;
+			
 			system("pause");
 			system("cls");
 			break;
@@ -195,19 +220,7 @@ void main()
 	}
 	cout << ">> [0] << Exit. " << endl;
 	system("pause");
-	//khoi tao
-	VatCan = new BitArray[MAX];
-	DuongDi = new BitArray[MAX];
-	CacDiemDaDiQua = new BitArray[MAX];
-	//tam giac
-	VeDoanThang(100, 100, 200, 200);
-	VeDoanThang(200, 200, 100, 200);
-	VeDoanThang(100, 100, 100, 200);
-	//Diem bat dau
-	int x1 = 50, y1 = 50;
-	//Diem ket thuc 
-	int x2 = 300, y2 = 300;
-	TimDuongDi(&x1, &y1, &x2, &y2);
+	
 #if DEBUG
 	cout << (stop ? "Co duong di" : "Khong co duong di");
 #endif // DEBUG
